@@ -3,6 +3,8 @@ package pl.coderslab.book;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "publishers")
 public class Publisher {
@@ -11,6 +13,9 @@ public class Publisher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
+    private List<Book> books;
 
     public Long getId() {
         return id;
